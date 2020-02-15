@@ -12,7 +12,7 @@ public class UsersTest {
 
     @Test
     public void users_constructor_test(){
-        
+
     }
 
 }
