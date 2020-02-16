@@ -26,6 +26,7 @@ public class Users {
     private LocalDate registerDate;
 
     //@Enumerated(EnumType.STRING)
+    //private List<Roles> roles;
 
 
 }

@@ -1,12 +1,16 @@
 package com.Flashycards.Flashycards.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Score {
     @Id
     private Long userId;
+
+    @Enumerated
     private Categories categories;
     private Double score;
 
