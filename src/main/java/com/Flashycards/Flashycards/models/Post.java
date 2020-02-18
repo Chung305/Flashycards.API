@@ -18,4 +18,6 @@ public class Post {
     private LocalDate createdOn;
     private LocalDate updatedOn;
     private String username;
+
+
 }
