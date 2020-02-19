@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String username;
 
     @Column(nullable = false)
-    @Size(min = 7)
+    @Size(min = 8)
     private String password;
 
     @Column(nullable = false)
@@ -101,10 +101,6 @@ public class User implements UserDetails {
         this.scores = scores;
     }
 
-    public void addScores(Score score){
-        this.scores.add(score);
-    }
-
     public LocalDate getRegister_date() {
         return register_date;
     }
@@ -124,6 +120,8 @@ public class User implements UserDetails {
 
     /**
      * UserDetails OverRide Methods
+     * Easy access to each users Authority by implementing UserDetails
+     * CHECK service/UserService.class
      */
     @Override
     public boolean isAccountNonExpired() {
