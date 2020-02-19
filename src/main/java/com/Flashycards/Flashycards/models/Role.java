@@ -9,18 +9,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToMany(mappedBy = "roles")
-    private Collection<Users> users;
-
     private String name;
 
     public Role() {
-        super();
-    }
-
-    public Role(final String name){
-        super();
-        this.name = name;
     }
 
     public Long getId() {
@@ -29,14 +20,6 @@ public class Role {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Collection<Users> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Collection<Users> users) {
-        this.users = users;
     }
 
     public String getName() {
