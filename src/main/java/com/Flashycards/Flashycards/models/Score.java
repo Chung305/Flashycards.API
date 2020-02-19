@@ -15,7 +15,7 @@ public class Score {
 
     private Double score;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private User users;
 
     public Score() {
@@ -51,6 +51,16 @@ public class Score {
 
     public void setUsers(User users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id=" + id +
+                ", categories=" + categories +
+                ", score=" + score +
+                ", users=" + users +
+                '}';
     }
 }
 

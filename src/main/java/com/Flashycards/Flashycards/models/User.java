@@ -33,15 +33,25 @@ public class User implements UserDetails {
     private Boolean enabled;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Score> scores;
+    private List<Score> scores = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> roles;
+    @Column(nullable = false)
+    private String roles;
 
     private LocalDate register_date;
 
     public User() {
     }
+     public User(String email, String username, String password, Boolean enabled, String roles, LocalDate register_date){
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.scores = new ArrayList<>();
+        this.roles = roles;
+        this.register_date = register_date;
+     }
+
 
     public Long getId() {
         return id;
@@ -91,6 +101,10 @@ public class User implements UserDetails {
         this.scores = scores;
     }
 
+    public void addScores(Score score){
+        this.scores.add(score);
+    }
+
     public LocalDate getRegister_date() {
         return register_date;
     }
@@ -99,15 +113,18 @@ public class User implements UserDetails {
         this.register_date = register_date;
     }
 
-    public List<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 
 
+    /**
+     * UserDetails OverRide Methods
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -131,12 +148,22 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-
-        for(Role role: roles){
-            String name = role.getName().toUpperCase();
-            authorities.add(new SimpleGrantedAuthority(name));
-        }
+        authorities.add(new SimpleGrantedAuthority(this.roles));
 
         return authorities;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", scores=" + scores +
+                ", roles='" + roles + '\'' +
+                ", register_date=" + register_date +
+                '}';
     }
 }
