@@ -1,6 +1,7 @@
 package com.Flashycards.Flashycards.service;
 
 import com.Flashycards.Flashycards.models.User;
+import com.Flashycards.Flashycards.models.dao.RegisterDAO;
 import com.Flashycards.Flashycards.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,5 +28,12 @@ public class UserService implements UserDetailsService{
             throw new UsernameNotFoundException("Username does not exist", e);
         }
 
+    }
+
+    public String createUser(RegisterDAO newUser) {
+        User user = new User();
+
+
+        return null;
     }
 }
