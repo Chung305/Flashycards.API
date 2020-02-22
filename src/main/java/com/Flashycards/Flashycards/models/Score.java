@@ -21,6 +21,13 @@ public class Score {
     public Score() {
     }
 
+    public Score(Categories categories, Double score, User user){
+        this.categories = categories;
+        this.score = score;
+        this.users = user;
+    }
+
+
     public Long getId() {
         return id;
     }

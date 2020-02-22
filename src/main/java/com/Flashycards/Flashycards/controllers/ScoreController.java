@@ -1,9 +1,34 @@
 package com.Flashycards.Flashycards.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.Flashycards.Flashycards.models.Score;
+import com.Flashycards.Flashycards.service.ScoreService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/scores")
 public class ScoreController {
+
+    @Autowired
+    private ScoreService scoreService;
+
+    /**
+     * @param id => User ID
+     * @param category => Category of the Test
+     * @param flashcardSize => Number of flashcards in the stack
+     * @param correct => How many correct flashcard questions answered
+     * @return Returns User Score
+     */
+
+    @PostMapping("/{id}/{category}/{flashcardSize}/{correct}")
+    public ResponseEntity<Score> createUserScore (
+            @PathVariable Long id, @PathVariable Integer category,
+            @PathVariable Double flashcardSize, @PathVariable Double correct){
+        return new ResponseEntity<>(scoreService.createUserScore(id, category, flashcardSize, correct), HttpStatus.CREATED);
+
+    }
+
+   // @PutMapping("/update/")
 }
