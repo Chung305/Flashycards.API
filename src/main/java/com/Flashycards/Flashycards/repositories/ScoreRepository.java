@@ -13,4 +13,5 @@ public interface ScoreRepository extends CrudRepository<Score, Long> {
 
     List<Score> findAllByUsers(User user);
     List<Score> findAllByCategories(Categories category);
+    Score findByCategoriesAndUsers (User user, Categories category);
 }
