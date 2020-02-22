@@ -100,13 +100,17 @@ public class UserService implements UserDetailsService{
         return userRepository.findAll();
     }
 
+    public List<User> findAllByRole(String role) {
+        return userRepository.findAllByRoles(role);
+    }
+
     public User findById(Long id) {
         if(userRepository.findById(id).isPresent())
             return userRepository.findById(id).get();
         else
             return null;
     }
-    
+
     public Boolean delete(Long id) {
         if(userRepository.existsById(id)){
             userRepository.deleteById(id);
@@ -114,6 +118,7 @@ public class UserService implements UserDetailsService{
         }
         return false;
     }
+
 
 
 }
