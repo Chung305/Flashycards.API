@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,14 +23,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
+    @Autowired
     private UserService userService;
-    private JwtFilter jwtFilter;
 
     @Autowired
-    public SecurityConfiguration(UserService userService, JwtFilter jwtFilter){
-        this.userService = userService;
-        this.jwtFilter = jwtFilter;
-    }
+    private JwtFilter jwtFilter;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -39,13 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .anyRequest()
-                //.permitAll()
-                .fullyAuthenticated()
-                .and().httpBasic();
-        http.csrf().disable();
-
+                .authorizeRequests().antMatchers("/api/user/**").permitAll()
+                .anyRequest().authenticated()
+                //.fullyAuthenticated()
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         /**
          * Handles Cors Headers and Cross Origin
          * Cors Issue fix
