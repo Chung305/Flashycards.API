@@ -87,6 +87,11 @@ public class UserController {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/all-users/{role}")
+    public ResponseEntity<List<User>> findAllByRole(@PathVariable String role){
+        return new ResponseEntity<>(userService.findAllByRole(role), HttpStatus.OK);
+    }
+
     /**
      * DELETE
      */
