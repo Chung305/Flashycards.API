@@ -1,20 +1,20 @@
 package com.Flashycards.Flashycards.models.dao;
 
-public class RegisterDAO {
+public class RegisterAndUpdateDAO {
 
     private String email;
     private String username;
     private String password;
     private String confirmPassword;
 
-    public RegisterDAO(String email, String username, String password, String confirmPassword) {
+    public RegisterAndUpdateDAO(String email, String username, String password, String confirmPassword) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.confirmPassword = confirmPassword;
     }
 
-    public RegisterDAO() {
+    public RegisterAndUpdateDAO() {
     }
 
     public String getEmail() {
