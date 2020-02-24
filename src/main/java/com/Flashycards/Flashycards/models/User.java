@@ -6,13 +6,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,11 +30,6 @@ public class User implements UserDetails {
 
     @Column(nullable = false)
     private Boolean enabled;
-
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "user")
-    private List<Score> scores = new ArrayList<>();
 
     @Column(nullable = false)
     private String roles;
@@ -86,14 +82,6 @@ public class User implements UserDetails {
 
     public Boolean getEnabled() {
         return enabled;
-    }
-
-    public List<Score> getScores() {
-        return scores;
-    }
-
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
     }
 
     public void setEnabled(Boolean enabled) {

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/scores")
 public class ScoreController {
@@ -23,7 +25,7 @@ public class ScoreController {
      */
 
     @PostMapping("/{userId}/{category}/{flashcardSize}/{correct}")
-    public ResponseEntity<Double> createUserScore (
+    public ResponseEntity<Score> createUserScore (
             @PathVariable Long userId, @PathVariable Integer category,
             @PathVariable Double flashcardSize, @PathVariable Double correct){
         return new ResponseEntity<>(scoreService.createUserScore(userId, category, flashcardSize, correct), HttpStatus.CREATED);
@@ -35,6 +37,11 @@ public class ScoreController {
             @PathVariable Long userId, @PathVariable Integer category,
             @PathVariable Double flashcardSize, @PathVariable Double correct){
         return new ResponseEntity<>(scoreService.updateUserScore(userId, category, flashcardSize, correct), HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Score>> getUserScores(@PathVariable Long userId){
+        return new ResponseEntity<>(scoreService.getUserScores(userId), HttpStatus.OK);
     }
 
 }
