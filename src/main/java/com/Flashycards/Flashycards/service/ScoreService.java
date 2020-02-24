@@ -8,6 +8,8 @@ import com.Flashycards.Flashycards.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScoreService {
 
@@ -18,16 +20,32 @@ public class ScoreService {
     private UserRepository userRepository;
 
 
-    public Score createUserScore(Long id, Integer category, Double flashcardSize, Double correct) {
+    public Double createUserScore(Long id, Integer category, Double flashcardSize, Double correct) {
         User user = userRepository.getOne(id);
         Categories setCategory = Categories.getCategory(category);
 
         Double user_score = Double.parseDouble(
-                String.format("%.2f", (correct / flashcardSize) )
+                String.format("%.2f", ((correct / flashcardSize) * 100))
         );
 
         Score newScore = new Score(setCategory, user_score, user);
+        user.getScores().add(newScore);
 
-        return scoreRepository.save(newScore);
+        userRepository.save(user);
+
+        return user_score;
+    }
+
+    public Score updateUserScore(Long userId, Integer category, Double flashcardSize, Double correct) {
+        User user = userRepository.getOne(userId);
+        Categories setCategory = Categories.getCategory(category);
+
+        Double user_score = Double.parseDouble(
+                String.format("%.2f", ((correct / flashcardSize) * 100))
+        );
+
+        
+        return null;
+
     }
 }

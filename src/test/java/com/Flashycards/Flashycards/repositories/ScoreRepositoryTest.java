@@ -60,8 +60,8 @@ public class ScoreRepositoryTest {
 
     @Test
     public void find_all_by_User_test(){
-        List<Score> user1Scores = scoreRepository.findAllByUsers(user1);
-        List<Score> user2Scores = scoreRepository.findAllByUsers(user2);
+        List<Score> user1Scores = scoreRepository.findAllByUser(user1);
+        List<Score> user2Scores = scoreRepository.findAllByUser(user2);
 
         assertEquals(2, user1Scores.size());
 
@@ -73,10 +73,11 @@ public class ScoreRepositoryTest {
     public void find_all_by_categories_test(){
         List<Score> javaScoresList = scoreRepository.findAllByCategories(Categories.Java);
 
-        assertEquals(user1, javaScoresList.get(0).getUsers());
-        assertEquals(user2, javaScoresList.get(1).getUsers());
+        assertEquals(user1, javaScoresList.get(0).getUser());
+        assertEquals(user2, javaScoresList.get(1).getUser());
         assertEquals(2, javaScoresList.size());
     }
+
 
 
 }

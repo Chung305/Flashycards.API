@@ -15,20 +15,26 @@ public class ScoreController {
     private ScoreService scoreService;
 
     /**
-     * @param id => User ID
+     * @param userId => User ID
      * @param category => Category of the Test
      * @param flashcardSize => Number of flashcards in the stack
      * @param correct => How many correct flashcard questions answered
      * @return Returns User Score
      */
 
-    @PostMapping("/{id}/{category}/{flashcardSize}/{correct}")
-    public ResponseEntity<Score> createUserScore (
-            @PathVariable Long id, @PathVariable Integer category,
+    @PostMapping("/{userId}/{category}/{flashcardSize}/{correct}")
+    public ResponseEntity<Double> createUserScore (
+            @PathVariable Long userId, @PathVariable Integer category,
             @PathVariable Double flashcardSize, @PathVariable Double correct){
-        return new ResponseEntity<>(scoreService.createUserScore(id, category, flashcardSize, correct), HttpStatus.CREATED);
+        return new ResponseEntity<>(scoreService.createUserScore(userId, category, flashcardSize, correct), HttpStatus.CREATED);
 
     }
 
-   // @PutMapping("/update/")
+    @PutMapping("/update/{userId}/{category}/{flashcardSize}/{correct}")
+    public ResponseEntity<Score> updateUserScore(
+            @PathVariable Long userId, @PathVariable Integer category,
+            @PathVariable Double flashcardSize, @PathVariable Double correct){
+        return new ResponseEntity<>(scoreService.updateUserScore(userId, category, flashcardSize, correct), HttpStatus.OK);
+    }
+
 }
