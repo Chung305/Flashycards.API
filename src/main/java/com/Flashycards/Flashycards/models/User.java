@@ -12,11 +12,9 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-//@Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -32,7 +30,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "user")
     private List<Score> scores = new ArrayList<>();
 
     @Column(nullable = false)
@@ -47,7 +47,6 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
-        this.scores = new ArrayList<>();
         this.roles = roles;
         this.register_date = register_date;
      }
@@ -89,16 +88,16 @@ public class User implements UserDetails {
         return enabled;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public List<Score> getScores() {
         return scores;
     }
 
     public void setScores(List<Score> scores) {
         this.scores = scores;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public LocalDate getRegister_date() {
@@ -159,7 +158,6 @@ public class User implements UserDetails {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
-                ", scores=" + scores +
                 ", roles='" + roles + '\'' +
                 ", register_date=" + register_date +
                 '}';
