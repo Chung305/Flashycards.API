@@ -1,12 +1,15 @@
 package com.Flashycards.Flashycards.models;
 
 import com.Flashycards.Flashycards.models.enums.Categories;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Score {
+public class Score implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long score_id;
@@ -16,8 +19,11 @@ public class Score {
 
     private Double score;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIgnore
     private User user;
 
     public Score() {
