@@ -44,4 +44,5 @@ public class ScoreController {
         return new ResponseEntity<>(scoreService.getUserScores(userId), HttpStatus.OK);
     }
 
+
 }

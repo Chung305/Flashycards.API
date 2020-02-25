@@ -4,6 +4,7 @@ import com.Flashycards.Flashycards.models.enums.Categories;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 public class Suggestion {
@@ -19,6 +20,8 @@ public class Suggestion {
     private String question;
     private Integer like_count;
     private Integer dislike_count;
+
+    private LocalDate date_created;
 
     public Suggestion() {
     }
@@ -68,5 +71,13 @@ public class Suggestion {
 
     public void setDislike_count(Integer dislike_count) {
         this.dislike_count = dislike_count;
+    }
+
+    public LocalDate getDate_created() {
+        return date_created;
+    }
+
+    public void setDate_created(LocalDate date_created) {
+        this.date_created = date_created;
     }
 }
