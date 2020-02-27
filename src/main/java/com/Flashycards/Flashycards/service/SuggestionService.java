@@ -1,7 +1,7 @@
 package com.Flashycards.Flashycards.service;
 
 import com.Flashycards.Flashycards.models.Suggestion;
-import com.Flashycards.Flashycards.models.dao.SuggestionDAO;
+import com.Flashycards.Flashycards.dao.SuggestionDAO;
 import com.Flashycards.Flashycards.models.enums.Categories;
 import com.Flashycards.Flashycards.repositories.SuggestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

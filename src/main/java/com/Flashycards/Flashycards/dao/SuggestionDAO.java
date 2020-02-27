@@ -1,4 +1,4 @@
-package com.Flashycards.Flashycards.models.dao;
+package com.Flashycards.Flashycards.dao;
 
 public class SuggestionDAO {
     private Integer category;
