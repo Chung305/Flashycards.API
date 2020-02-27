@@ -1,6 +1,6 @@
 package com.Flashycards.Flashycards.controllers;
 
-import com.Flashycards.Flashycards.models.dao.RegisterAndUpdateDAO;
+import com.Flashycards.Flashycards.dao.RegisterAndUpdateDAO;
 import com.Flashycards.Flashycards.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;

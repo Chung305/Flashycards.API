@@ -1,11 +1,9 @@
 package com.Flashycards.Flashycards.controllers;
 
-import com.Flashycards.Flashycards.models.Score;
 import com.Flashycards.Flashycards.models.User;
-import com.Flashycards.Flashycards.models.dao.AuthenticationRequest;
-import com.Flashycards.Flashycards.models.dao.AuthenticationResponse;
-import com.Flashycards.Flashycards.models.dao.RegisterAndUpdateDAO;
-import com.Flashycards.Flashycards.service.ScoreService;
+import com.Flashycards.Flashycards.dao.AuthenticationRequest;
+import com.Flashycards.Flashycards.dao.AuthenticationResponse;
+import com.Flashycards.Flashycards.dao.RegisterAndUpdateDAO;
 import com.Flashycards.Flashycards.service.UserService;
 import com.Flashycards.Flashycards.utilities.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
