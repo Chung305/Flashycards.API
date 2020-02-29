@@ -17,6 +17,10 @@ public class SuggestionController {
     @Autowired
     private SuggestionService suggestionService;
 
+    /**
+     * Rethink How suggestion is going to function, Refactor later
+     */
+
     @PostMapping("/create")
     public ResponseEntity<Suggestion> createSuggestion (@RequestBody SuggestionDAO suggestion){
         return new ResponseEntity<>(suggestionService.createSuggestion(suggestion), HttpStatus.CREATED);
