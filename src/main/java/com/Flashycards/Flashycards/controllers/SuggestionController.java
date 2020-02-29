@@ -1,9 +1,8 @@
 package com.Flashycards.Flashycards.controllers;
 
 import com.Flashycards.Flashycards.models.Suggestion;
-import com.Flashycards.Flashycards.models.dao.SuggestionDAO;
+import com.Flashycards.Flashycards.dao.SuggestionDAO;
 import com.Flashycards.Flashycards.service.SuggestionService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
