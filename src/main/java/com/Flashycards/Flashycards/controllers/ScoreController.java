@@ -17,13 +17,13 @@ public class ScoreController {
     private ScoreService scoreService;
 
     /**
+     * Creates
      * @param userId => User ID
      * @param category => Category of the Test
      * @param flashcardSize => Number of flashcards in the stack
      * @param correct => How many correct flashcard questions answered
      * @return Returns User Score
      */
-
     @PostMapping("/{userId}/{category}/{flashcardSize}/{correct}")
     public ResponseEntity<Score> createUserScore (
             @PathVariable Long userId, @PathVariable Integer category,
@@ -32,6 +32,14 @@ public class ScoreController {
 
     }
 
+    /**
+     * Updates a users test from a certain category
+     * @param userId => User ID
+     * @param category => Category of the TEst
+     * @param flashcardSize => Number of flashcards in the stack
+     * @param correct => How many correct flashcard questions answered
+     * @return User updated score
+     */
     @PutMapping("/update/{userId}/{category}/{flashcardSize}/{correct}")
     public ResponseEntity<Score> updateUserScore(
             @PathVariable Long userId, @PathVariable Integer category,
@@ -39,9 +47,15 @@ public class ScoreController {
         return new ResponseEntity<>(scoreService.updateUserScore(userId, category, flashcardSize, correct), HttpStatus.OK);
     }
 
+    /**
+     * Gets a List of scores by the user Id
+     * @param userId => user Id to locate user
+     * @return returns A Users List of scores
+     */
     @GetMapping("/{userId}")
     public ResponseEntity<List<Score>> getUserScores(@PathVariable Long userId){
         return new ResponseEntity<>(scoreService.getUserScores(userId), HttpStatus.OK);
     }
+
 
 }

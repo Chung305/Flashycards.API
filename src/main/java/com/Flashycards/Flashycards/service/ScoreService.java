@@ -49,7 +49,6 @@ public class ScoreService {
                 return each;
             }
         }
-
         return null;
     }
 

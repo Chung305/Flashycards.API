@@ -2,7 +2,7 @@ package com.Flashycards.Flashycards.service;
 
 import com.Flashycards.Flashycards.exceptions.RequestNotProcessedException;
 import com.Flashycards.Flashycards.models.User;
-import com.Flashycards.Flashycards.models.dao.RegisterAndUpdateDAO;
+import com.Flashycards.Flashycards.dao.RegisterAndUpdateDAO;
 import com.Flashycards.Flashycards.models.enums.Roles;
 import com.Flashycards.Flashycards.repositories.UserRepository;
 import com.Flashycards.Flashycards.utilities.JwtUtil;
