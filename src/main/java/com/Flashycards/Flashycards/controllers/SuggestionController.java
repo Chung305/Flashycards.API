@@ -19,6 +19,8 @@ public class SuggestionController {
 
     /**
      * Rethink How suggestion is going to function, Refactor later
+     *
+     * Revamp how suggestion will work
      */
 
     @PostMapping("/create")
