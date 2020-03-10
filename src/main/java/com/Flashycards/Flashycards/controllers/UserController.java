@@ -69,6 +69,11 @@ public class UserController {
         return new ResponseEntity<>(userService.updateUser(userUpdate, id), HttpStatus.OK);
     }
 
+    /**
+     *  ADMIN use only for changing authority of a user
+     * @param id of the user
+     * @return
+     */
     @PutMapping("/update/authority/{id}")
     public ResponseEntity<User> userAuthorityUpdate (@PathVariable Long id){
         return new ResponseEntity<>(userService.userAuthorityUpdate(id), HttpStatus.OK);
