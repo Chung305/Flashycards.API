@@ -17,10 +17,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
+@RunWith(SpringRunner.class)
 public class ScoreRepositoryTest {
-
     @Autowired
     private ScoreRepository scoreRepository;
 
@@ -77,7 +76,5 @@ public class ScoreRepositoryTest {
         assertEquals(user2, javaScoresList.get(1).getUser());
         assertEquals(2, javaScoresList.size());
     }
-
-
 
 }

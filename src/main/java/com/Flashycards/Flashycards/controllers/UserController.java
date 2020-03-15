@@ -27,8 +27,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private JwtUtil jwtTokenUtil;
 
 
     /**
@@ -47,7 +45,7 @@ public class UserController {
         }
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String jwt = JwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }

@@ -74,7 +74,7 @@ public class UserService implements UserDetailsService{
 
             UserDetails updatedDetails = loadUserByUsername(user.getUsername());
 
-            return new JwtUtil().generateToken(updatedDetails);
+            return JwtUtil.generateToken(updatedDetails);
         }else{
             throw new RequestNotProcessedException("Username or Email already exists", HttpStatus.UNPROCESSABLE_ENTITY);
         }

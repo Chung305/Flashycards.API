@@ -3,6 +3,8 @@ package com.Flashycards.Flashycards.models;
 import com.Flashycards.Flashycards.models.enums.Categories;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +12,20 @@ import java.util.List;
 @Entity
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Categories category;
-
-    @Column(nullable = false)
+    @Size(max = 100)
+    @Column(nullable = false, unique = true)
     private String title;
 
+    @NotNull
+    @Size(max = 250)
+    @Column(unique = true)
+    private String description;
+
     @Column(nullable = false)
+    @Lob
     private String content;
 
     private LocalDate createdOn;
@@ -28,8 +34,6 @@ public class Post {
     @Column(nullable = false)
     private String username;
 
-    @OneToMany
-    private List<Comments> comments = new ArrayList<>();
 
     public Post() {
     }
@@ -42,20 +46,20 @@ public class Post {
         this.id = id;
     }
 
-    public Categories getCategory() {
-        return category;
-    }
-
-    public void setCategory(Categories category) {
-        this.category = category;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getContent() {
@@ -88,13 +92,5 @@ public class Post {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public List<Comments> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comments> comments) {
-        this.comments = comments;
     }
 }
