@@ -1,8 +1,6 @@
 package com.Flashycards.Flashycards.repositories;
 
-import com.Flashycards.Flashycards.models.Score;
 import com.Flashycards.Flashycards.models.User;
-import com.Flashycards.Flashycards.models.enums.Categories;
 import com.Flashycards.Flashycards.models.enums.Roles;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +15,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-@RunWith(SpringRunner.class)
 @DataJpaTest
+@RunWith(SpringRunner.class)
 public class UserRepositoryTest {
 
     @Autowired
@@ -27,9 +24,6 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private ScoreRepository scoreRepository;
 
     @Before
     public void setUp(){
@@ -75,6 +69,4 @@ public class UserRepositoryTest {
         assertEquals(3, members.size());
         assertEquals(1, admins.size());
     }
-
-
 }
