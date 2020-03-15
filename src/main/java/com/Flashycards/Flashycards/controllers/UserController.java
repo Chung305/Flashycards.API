@@ -27,8 +27,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private JwtUtil jwtTokenUtil;
 
 
     /**
@@ -47,7 +45,7 @@ public class UserController {
         }
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String jwt = JwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
@@ -69,6 +67,11 @@ public class UserController {
         return new ResponseEntity<>(userService.updateUser(userUpdate, id), HttpStatus.OK);
     }
 
+    /**
+     *  ADMIN use only for changing authority of a user
+     * @param id of the user
+     * @return
+     */
     @PutMapping("/update/authority/{id}")
     public ResponseEntity<User> userAuthorityUpdate (@PathVariable Long id){
         return new ResponseEntity<>(userService.userAuthorityUpdate(id), HttpStatus.OK);
