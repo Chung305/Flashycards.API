@@ -100,7 +100,7 @@ public class UserController {
      */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable Long id){
-        return new ResponseEntity<>(userService.delete(id), HttpStatus.OK);
+        return new ResponseEntity<>(userService.delete(id), HttpStatus.ACCEPTED);
     }
 
 
