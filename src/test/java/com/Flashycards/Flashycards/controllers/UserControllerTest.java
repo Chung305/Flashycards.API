@@ -1,44 +1,26 @@
 package com.Flashycards.Flashycards.controllers;
 
 import com.Flashycards.Flashycards.dao.RegisterAndUpdateDAO;
-import com.Flashycards.Flashycards.models.User;
-import com.Flashycards.Flashycards.models.enums.Roles;
 import com.Flashycards.Flashycards.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 public class UserControllerTest {
 
     @Autowired
@@ -96,8 +78,15 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
     }
+    @Test
+    public void delete_test() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders
+                .delete("/api/user/delete/{id}", 1);
 
-
+        MvcResult result = mvc.perform(request)
+                .andExpect(status().isAccepted())
+                .andReturn();
+    }
 
     // converts objects to json format
     public static String asJsonString(final Object obj) {
